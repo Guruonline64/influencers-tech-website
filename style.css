@@ -434,6 +434,121 @@ nav a:hover {
 }
 
 /* =========================
+   PORTFOLIO CARD UPGRADE
+   ========================= */
+
+.portfolio-card-upgraded {
+    position: relative;
+    padding: 18px;
+    border: 1px solid #292f37;
+    border-radius: 16px;
+    background: #101318;
+    transition: transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+}
+
+.portfolio-card-upgraded:hover {
+    transform: translateY(-8px);
+    border-color: #4da3ff;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-card-upgraded .portfolio-image {
+    margin-bottom: 22px;
+}
+
+.portfolio-card-upgraded .portfolio-image img {
+    transition: transform 0.5s ease;
+}
+
+.portfolio-card-upgraded:hover .portfolio-image img {
+    transform: scale(1.05);
+}
+
+.portfolio-category {
+    color: #4da3ff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 10px;
+}
+
+.portfolio-card-upgraded h3 {
+    font-size: 21px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.portfolio-card-upgraded p {
+    color: #9da5af;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 22px;
+}
+
+.portfolio-tags span {
+    padding: 6px 10px;
+    border: 1px solid #303741;
+    border-radius: 5px;
+    color: #aeb5bf;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.portfolio-project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    transition: color 0.3s ease;
+}
+
+.portfolio-project-link span {
+    font-size: 17px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-project-link:hover {
+    color: #4da3ff;
+}
+
+.portfolio-project-link:hover span {
+    transform: translate(3px, -3px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+    .portfolio-card-upgraded {
+        padding: 15px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .portfolio-card-upgraded h3 {
+        font-size: 20px;
+    }
+
+    .portfolio-tags span {
+        font-size: 9px;
+    }
+
+}
+/* =========================
    FOOTER
 ========================= */
 
