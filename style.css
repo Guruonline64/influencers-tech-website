@@ -932,45 +932,47 @@ footer {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 10px;
-}
+/* =========================
+   PORTFOLIO PROJECT BUTTON
+========================= */
 
-.project-modal-grid p {
-    color: #929ba6;
-    font-size: 14px;
-    line-height: 1.7;
-}
+.portfolio-project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
-.project-modal-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-}
+    padding: 0;
+    margin: 0;
 
-.project-modal-tags span {
-    padding: 7px 10px;
-    border: 1px solid #303741;
-    border-radius: 5px;
-    color: #b8c0ca;
-    font-size: 10px;
-    font-weight: 700;
-}
+    background: transparent;
+    border: 0;
+    border-radius: 0;
 
-.project-modal-footer {
-    display: flex;
-    justify-content: space-between;
+    color: #ffffff;
 
-    margin-top: 45px;
-    padding-top: 20px;
-
-    border-top: 1px solid #303741;
-
-    color: #68717d;
-
-    font-size: 10px;
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    line-height: normal;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.portfolio-project-link span {
+    font-size: 17px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+.portfolio-project-link:hover {
+    color: #4da3ff;
+}
+
+.portfolio-project-link:hover span {
+    transform: translate(3px, -3px);
 }
 
 
