@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentYear = new Date().getFullYear();
 
         yearElement.textContent =
-            `© ${currentYear} UrbanEdge Digital. Concept Portfolio Project.`;
+            `© ${currentYear} Influencer's Tech | Digital Solutions all right reserved.`;
     }
 
 
