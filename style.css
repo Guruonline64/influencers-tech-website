@@ -559,18 +559,38 @@ nav a:hover {
     font-weight: 700;
 }
 
+/* =========================
+   PORTFOLIO PROJECT BUTTON
+========================= */
+
 .portfolio-project-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+
     color: #ffffff;
+
+    font-family: inherit;
     font-size: 13px;
     font-weight: 800;
+    line-height: normal;
+
+    cursor: pointer;
+
     transition: color 0.3s ease;
 }
 
 .portfolio-project-link span {
     font-size: 17px;
+    line-height: 1;
+
     transition: transform 0.3s ease;
 }
 
