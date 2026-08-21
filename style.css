@@ -434,6 +434,62 @@ nav a:hover {
 }
 
 /* =========================
+   WHATSAPP FLOAT BUTTON
+========================= */
+
+.whatsapp-float {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 17px;
+
+    background: #25D366;
+    color: #07101a;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.whatsapp-float strong {
+    font-size: 17px;
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 500px) {
+
+    .whatsapp-float {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 14px;
+    }
+
+    .whatsapp-float span {
+        font-size: 12px;
+    }
+
+}
+
+
+    
+/* =========================
    PORTFOLIO CARD UPGRADE
    ========================= */
 
