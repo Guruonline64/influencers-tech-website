@@ -451,53 +451,54 @@ const filteredProjects =
 
 
     // =====================================================
-    // FILTER BUTTONS
-    // =====================================================
+// FILTER BUTTONS
+// =====================================================
+
+let activePortfolioFilter = "all";
+
+portfolioFilters.forEach(
+    filterButton => {
+
+        filterButton.addEventListener(
+            "click",
+            () => {
+
+                portfolioFilters.forEach(
+                    button => {
+
+                        button.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
 
 
-    let activePortfolioFilter = "all";
-    
-    portfolioFilters.forEach(
-        filterButton => {
-
-            filterButton.addEventListener(
-                "click",
-                () => {
-
-                   const filter =
-    filterButton.dataset.filter;
+                filterButton.classList.add(
+                    "active"
+                );
 
 
-activePortfolioFilter =
-    filter;
+                const filter =
+                    filterButton.dataset.filter;
 
 
-renderPortfolio(
-    activePortfolioFilter,
-    portfolioSearch
-        ? portfolioSearch.value
-        : ""
+                activePortfolioFilter =
+                    filter;
+
+
+                renderPortfolio(
+                    activePortfolioFilter,
+                    portfolioSearch
+                        ? portfolioSearch.value
+                        : ""
+                );
+
+            }
+        );
+
+    }
 );
-
-
-                    filterButton.classList.add(
-                        "active"
-                    );
-
-
-                    const filter =
-                        filterButton.dataset.filter;
-
-
-                    renderPortfolio(
-                        filter
-                    );
-
-                }
-            );
-
-        }
-    );
 // =====================================================
 // PORTFOLIO SEARCH
 // =====================================================
