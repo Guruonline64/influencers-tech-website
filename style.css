@@ -1328,3 +1328,111 @@ footer {
     }
 
 }
+    /* =====================================================
+   PORTFOLIO SEARCH
+===================================================== */
+
+.portfolio-search {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto 28px;
+}
+
+.portfolio-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.portfolio-search-box input {
+    width: 100%;
+    height: 54px;
+    padding: 0 52px 0 48px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.portfolio-search-box input::placeholder {
+    opacity: 0.6;
+}
+
+.portfolio-search-box input:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-search-icon {
+    position: absolute;
+    left: 17px;
+
+    font-size: 18px;
+
+    pointer-events: none;
+}
+
+.portfolio-search-clear {
+    position: absolute;
+    right: 12px;
+
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: inherit;
+
+    font-size: 21px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.portfolio-search-clear:hover {
+    transform: scale(1.08);
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .portfolio-search {
+        margin-bottom: 22px;
+    }
+
+    .portfolio-search-box input {
+        height: 50px;
+        font-size: 14px;
+    }
+
+}
