@@ -11,6 +11,7 @@ window.portfolioProjects = [
 
     {
         id: "influencers-tech",
+
         title: "Influencer's Tech",
 
         category: "branding",
@@ -38,7 +39,6 @@ window.portfolioProjects = [
 
         type:
             "Technology / Creative Services"
-
     },
 
 
@@ -76,7 +76,6 @@ window.portfolioProjects = [
 
         type:
             "Restaurant / Hospitality"
-
     },
 
 
@@ -114,72 +113,43 @@ window.portfolioProjects = [
 
         type:
             "Business Website"
-
     },
-{
-    id: "nike-branding",
 
-    title: "Nike Brand Concept",
 
-    category: "branding",
-
-    categoryLabel:
-        "Brand Identity • Graphic Design",
-
-    tags: [
-        "Logo Design",
-        "Branding",
-        "Graphics"
-    ],
-
-    image:
-        "Images/nike-branding.png",
-
-    description:
-        "A modern brand identity concept...",
-
-    challenge:
-        "Create a bold visual identity...",
-
-    solution:
-        "Developed a clean and recognizable identity...",
-
-    type:
-        "Brand Identity"
-},
+    // =================================================
+    // PROJECT 04
+    // =================================================
 
     {
-        id: "project-four",
+        id: "nike-branding",
 
-        title: "Your Next Project",
+        title: "Nike Brand Concept",
 
-        category: "websites",
+        category: "branding",
 
         categoryLabel:
-            "Website Design",
+            "Brand Identity • Graphic Design",
 
         tags: [
-            "HTML",
-            "CSS",
-            "JavaScript"
+            "Logo Design",
+            "Branding",
+            "Graphics"
         ],
 
         image:
-            "Images/project-four.png",
+            "Images/nike-branding.png",
 
         description:
-            "Describe the project here.",
+            "A modern Nike-inspired brand identity concept exploring bold visual communication and contemporary graphic design.",
 
         challenge:
-            "Describe the challenge here.",
+            "Create a bold visual identity concept with a strong and recognizable visual direction.",
 
         solution:
-            "Describe your solution here.",
+            "Developed a clean and recognizable identity concept focused on strong typography, visual balance and modern presentation.",
 
         type:
-            "Website"
-
+            "Brand Identity"
     }
-    */
 
 ];
