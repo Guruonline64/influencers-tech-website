@@ -14,7 +14,11 @@ window.portfolioProjects = [
 
         title: "Influencer's Tech",
 
-        category: "branding",
+        categories: [
+            "branding",
+            "graphics",
+            "websites"
+        ],
 
         categoryLabel:
             "Brand Identity • Digital Services",
@@ -38,7 +42,27 @@ window.portfolioProjects = [
             "Developed a clean visual direction and responsive digital experience focused on credibility, clear communication and showcasing creative work.",
 
         type:
-            "Technology / Creative Services"
+            "Technology / Creative Services",
+
+        year:
+            "2026",
+
+        tools: [
+            "Figma",
+            "Photoshop",
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+
+        featured:
+            true,
+
+        liveUrl:
+            "https://guruonline64.github.io/influencers-tech-website/",
+
+        githubUrl:
+            "https://github.com/Guruonline64/influencers-tech-website"
     },
 
 
@@ -51,7 +75,11 @@ window.portfolioProjects = [
 
         title: "Urban Plate Restaurant",
 
-        category: "branding",
+        categories: [
+            "branding",
+            "graphics",
+            "marketing"
+        ],
 
         categoryLabel:
             "Branding • Graphics",
@@ -75,7 +103,25 @@ window.portfolioProjects = [
             "Developed a cohesive visual direction designed to give the restaurant a recognizable and professional brand presence.",
 
         type:
-            "Restaurant / Hospitality"
+            "Restaurant / Hospitality",
+
+        year:
+            "2026",
+
+        tools: [
+            "Photoshop",
+            "Illustrator",
+            "Canva"
+        ],
+
+        featured:
+            true,
+
+        liveUrl:
+            "",
+
+        githubUrl:
+            ""
     },
 
 
@@ -88,7 +134,9 @@ window.portfolioProjects = [
 
         title: "Influencer's Tech Website",
 
-        category: "websites",
+        categories: [
+            "websites"
+        ],
 
         categoryLabel:
             "Web Development • UI Design",
@@ -100,7 +148,8 @@ window.portfolioProjects = [
             "Responsive Design"
         ],
 
-        image: null,
+        image:
+            null,
 
         description:
             "A responsive business website designed to present digital services, creative work and project information across devices.",
@@ -112,7 +161,26 @@ window.portfolioProjects = [
             "Created a responsive front-end experience using semantic HTML, modern CSS and JavaScript interactions.",
 
         type:
-            "Business Website"
+            "Business Website",
+
+        year:
+            "2026",
+
+        tools: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "GitHub"
+        ],
+
+        featured:
+            true,
+
+        liveUrl:
+            "https://guruonline64.github.io/influencers-tech-website/",
+
+        githubUrl:
+            "https://github.com/Guruonline64/influencers-tech-website"
     },
 
 
@@ -125,7 +193,10 @@ window.portfolioProjects = [
 
         title: "Nike Brand Concept",
 
-        category: "branding",
+        categories: [
+            "branding",
+            "graphics"
+        ],
 
         categoryLabel:
             "Brand Identity • Graphic Design",
@@ -149,7 +220,25 @@ window.portfolioProjects = [
             "Developed a clean and recognizable identity concept focused on strong typography, visual balance and modern presentation.",
 
         type:
-            "Brand Identity"
+            "Brand Identity",
+
+        year:
+            "2026",
+
+        tools: [
+            "Photoshop",
+            "Illustrator",
+            "Figma"
+        ],
+
+        featured:
+            false,
+
+        liveUrl:
+            "",
+
+        githubUrl:
+            ""
     }
 
 ];
