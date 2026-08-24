@@ -1,155 +1,3 @@
-// =====================================================
-// INFLUENCER'S TECH
-// MAIN JAVASCRIPT
-// =====================================================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // =================================================
-    // CURRENT YEAR
-    // =================================================
-
-    const yearElement =
-        document.querySelector("footer p:last-child");
-
-    if (yearElement) {
-
-        yearElement.textContent =
-            `© ${new Date().getFullYear()} Influencer's Tech | Digital Solutions.`;
-
-    }
-
-
-    // =================================================
-    // HEADER SHADOW
-    // =================================================
-
-    const header =
-        document.querySelector(".header");
-
-    if (header) {
-
-        window.addEventListener("scroll", () => {
-
-            if (window.scrollY > 20) {
-
-                header.style.boxShadow =
-                    "0 8px 30px rgba(0, 0, 0, 0.25)";
-
-            } else {
-
-                header.style.boxShadow =
-                    "none";
-
-            }
-
-        });
-
-    }
-
-
-    // =================================================
-    // SMOOTH NAVIGATION
-    // =================================================
-
-    const navigationLinks =
-        document.querySelectorAll('a[href^="#"]');
-
-    navigationLinks.forEach(link => {
-
-        link.addEventListener("click", event => {
-
-            const targetId =
-                link.getAttribute("href");
-
-            if (
-                !targetId ||
-                targetId === "#"
-            ) {
-                return;
-            }
-
-            const target =
-                document.querySelector(targetId);
-
-            if (target) {
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        });
-
-    });
-
-
-    // =================================================
-    // MOBILE MENU
-    // =================================================
-
-    const menuToggle =
-        document.querySelector(".menu-toggle");
-
-    const mobileNav =
-        document.querySelector(".mobile-nav");
-
-    if (menuToggle && mobileNav) {
-
-        menuToggle.addEventListener(
-            "click",
-            () => {
-
-                const isOpen =
-                    mobileNav.classList.toggle("active");
-
-                menuToggle.classList.toggle(
-                    "active",
-                    isOpen
-                );
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    isOpen ? "true" : "false"
-                );
-
-            }
-        );
-
-
-        mobileNav
-            .querySelectorAll("a")
-            .forEach(link => {
-
-                link.addEventListener(
-                    "click",
-                    () => {
-
-                        mobileNav.classList.remove(
-                            "active"
-                        );
-
-                        menuToggle.classList.remove(
-                            "active"
-                        );
-
-                        menuToggle.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-
-                    }
-                );
-
-            });
-
-    }
-
-
     // =====================================================
 // PORTFOLIO DATABASE + FILTER SYSTEM
 // =====================================================
@@ -588,7 +436,7 @@ function closeProjectCaseStudy() {
 
     document.body.style.overflow =
         "";
-
+    
 }
 
 
@@ -635,3 +483,159 @@ document.addEventListener(
 
     }
 );
+
+
+
+
+// =====================================================
+// INFLUENCER'S TECH
+// MAIN JAVASCRIPT
+// =====================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // =================================================
+    // CURRENT YEAR
+    // =================================================
+
+    const yearElement =
+        document.querySelector("footer p:last-child");
+
+    if (yearElement) {
+
+        yearElement.textContent =
+            `© ${new Date().getFullYear()} Influencer's Tech | Digital Solutions.`;
+
+    }
+
+
+    // =================================================
+    // HEADER SHADOW
+    // =================================================
+
+    const header =
+        document.querySelector(".header");
+
+    if (header) {
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 20) {
+
+                header.style.boxShadow =
+                    "0 8px 30px rgba(0, 0, 0, 0.25)";
+
+            } else {
+
+                header.style.boxShadow =
+                    "none";
+
+            }
+
+        });
+
+    }
+
+
+    // =================================================
+    // SMOOTH NAVIGATION
+    // =================================================
+
+    const navigationLinks =
+        document.querySelectorAll('a[href^="#"]');
+
+    navigationLinks.forEach(link => {
+
+        link.addEventListener("click", event => {
+
+            const targetId =
+                link.getAttribute("href");
+
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+                return;
+            }
+
+            const target =
+                document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+
+    // =================================================
+    // MOBILE MENU
+    // =================================================
+
+    const menuToggle =
+        document.querySelector(".menu-toggle");
+
+    const mobileNav =
+        document.querySelector(".mobile-nav");
+
+    if (menuToggle && mobileNav) {
+
+        menuToggle.addEventListener(
+            "click",
+            () => {
+
+                const isOpen =
+                    mobileNav.classList.toggle("active");
+
+                menuToggle.classList.toggle(
+                    "active",
+                    isOpen
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+            }
+        );
+
+
+        mobileNav
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        mobileNav.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            });
+
+    }
+
+
