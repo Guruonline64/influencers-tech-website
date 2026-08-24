@@ -146,13 +146,8 @@ window.portfolioProjects = [
 
     type:
         "Brand Identity"
-}
+},
 
-    // =================================================
-    // ADD MORE PROJECTS BELOW
-    // =================================================
-
-    /*
     {
         id: "project-four",
 
