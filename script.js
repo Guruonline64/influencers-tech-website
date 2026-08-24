@@ -150,67 +150,349 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =================================================
-    // PORTFOLIO CASE STUDY SYSTEM
-    // =================================================
+    // =====================================================
+// PORTFOLIO DATABASE + FILTER SYSTEM
+// =====================================================
 
-    const projectModal =
-        document.getElementById("projectModal");
+const portfolioGrid =
+    document.getElementById("portfolioGrid");
 
-    const projectModalClose =
-        document.getElementById(
-            "projectModalClose"
+const portfolioFilters =
+    document.querySelectorAll(".portfolio-filter");
+
+const portfolioEmpty =
+    document.getElementById("portfolioEmpty");
+
+
+// =====================================================
+// RENDER PROJECTS
+// =====================================================
+
+function renderPortfolio(filter = "all") {
+
+    if (!portfolioGrid) {
+        return;
+    }
+
+
+    portfolioGrid.innerHTML = "";
+
+
+    const filteredProjects =
+        filter === "all"
+
+            ? portfolioProjects
+
+            : portfolioProjects.filter(
+                project =>
+                    project.category === filter
+            );
+
+
+    // EMPTY STATE
+
+    if (filteredProjects.length === 0) {
+
+        if (portfolioEmpty) {
+
+            portfolioEmpty.hidden =
+                false;
+
+        }
+
+        return;
+
+    }
+
+
+    if (portfolioEmpty) {
+
+        portfolioEmpty.hidden =
+            true;
+
+    }
+
+
+    // CREATE PROJECT CARDS
+
+    filteredProjects.forEach(
+        (project, index) => {
+
+            const article =
+                document.createElement("article");
+
+
+            article.className =
+                "work-item portfolio-card-generated";
+
+
+            article.style.animationDelay =
+                `${index * 0.08}s`;
+
+
+            // -----------------------------------------
+            // IMAGE
+            // -----------------------------------------
+
+            let imageHTML = "";
+
+
+            if (project.image) {
+
+                imageHTML = `
+                    <div class="portfolio-image">
+
+                        <img
+                            src="${project.image}"
+                            alt="${project.title}"
+                            loading="lazy"
+                        >
+
+                    </div>
+                `;
+
+            } else {
+
+                imageHTML = `
+                    <div class="portfolio-image portfolio-placeholder">
+
+                        <span>
+                            ${project.type}
+                        </span>
+
+                    </div>
+                `;
+
+            }
+
+
+            // -----------------------------------------
+            // TAGS
+            // -----------------------------------------
+
+            const tagsHTML =
+                project.tags
+                    .map(
+                        tag =>
+                            `<span>${tag}</span>`
+                    )
+                    .join("");
+
+
+            // -----------------------------------------
+            // CARD
+            // -----------------------------------------
+
+            article.innerHTML = `
+
+                ${imageHTML}
+
+                <div class="portfolio-generated-category">
+
+                    ${project.categoryLabel}
+
+                </div>
+
+
+                <h3>
+                    ${project.title}
+                </h3>
+
+
+                <p>
+                    ${project.description}
+                </p>
+
+
+                <div
+                    class="portfolio-generated-tags"
+                >
+
+                    ${tagsHTML}
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="portfolio-generated-button"
+                    data-project-id="${project.id}"
+                >
+
+                    View Project
+
+                    <span>↗</span>
+
+                </button>
+
+            `;
+
+
+            portfolioGrid.appendChild(
+                article
+            );
+
+        }
+    );
+
+
+    // -----------------------------------------
+    // BUTTON EVENTS
+    // -----------------------------------------
+
+    portfolioGrid
+        .querySelectorAll(
+            ".portfolio-generated-button"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    const projectId =
+                        button.dataset.projectId;
+
+
+                    openProjectCaseStudy(
+                        projectId
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+// =====================================================
+// FILTER BUTTONS
+// =====================================================
+
+portfolioFilters.forEach(
+    filterButton => {
+
+        filterButton.addEventListener(
+            "click",
+            () => {
+
+                portfolioFilters.forEach(
+                    button => {
+
+                        button.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                filterButton.classList.add(
+                    "active"
+                );
+
+
+                const filter =
+                    filterButton.dataset.filter;
+
+
+                renderPortfolio(
+                    filter
+                );
+
+            }
         );
 
-    const projectModalOverlay =
-        document.getElementById(
-            "projectModalOverlay"
+    }
+);
+
+
+// =====================================================
+// INITIAL LOAD
+// =====================================================
+
+renderPortfolio("all");
+
+
+// =====================================================
+// CASE STUDY
+// =====================================================
+
+const projectModal =
+    document.getElementById(
+        "projectModal"
+    );
+
+const projectModalClose =
+    document.getElementById(
+        "projectModalClose"
+    );
+
+const projectModalOverlay =
+    document.getElementById(
+        "projectModalOverlay"
+    );
+
+const projectModalCategory =
+    document.getElementById(
+        "projectModalCategory"
+    );
+
+const projectModalTitle =
+    document.getElementById(
+        "projectModalTitle"
+    );
+
+const projectModalIntro =
+    document.getElementById(
+        "projectModalIntro"
+    );
+
+const projectModalChallenge =
+    document.getElementById(
+        "projectModalChallenge"
+    );
+
+const projectModalSolution =
+    document.getElementById(
+        "projectModalSolution"
+    );
+
+const projectModalTags =
+    document.getElementById(
+        "projectModalTags"
+    );
+
+const projectModalType =
+    document.getElementById(
+        "projectModalType"
+    );
+
+
+// =====================================================
+// OPEN CASE STUDY
+// =====================================================
+
+function openProjectCaseStudy(projectId) {
+
+    const project =
+        portfolioProjects.find(
+            item =>
+                item.id === projectId
         );
 
-    const projectModalCategory =
-        document.getElementById(
-            "projectModalCategory"
-        );
 
-    const projectModalTitle =
-        document.getElementById(
-            "projectModalTitle"
-        );
-
-    const projectModalIntro =
-        document.getElementById(
-            "projectModalIntro"
-        );
-
-    const projectModalChallenge =
-        document.getElementById(
-            "projectModalChallenge"
-        );
-
-    const projectModalSolution =
-        document.getElementById(
-            "projectModalSolution"
-        );
-
-    const projectModalTags =
-        document.getElementById(
-            "projectModalTags"
-        );
-
-    const projectModalType =
-        document.getElementById(
-            "projectModalType"
-        );
-
-
-    // =================================================
-    // CHECK MODAL
-    // =================================================
-
-    if (!projectModal) {
+    if (!project) {
 
         console.error(
-            "ERROR: #projectModal was not found."
+            "Project not found:",
+            projectId
         );
 
         return;
@@ -218,301 +500,138 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =================================================
-    // PROJECT DATA
-    // =================================================
-
-    const projects = {
-
-        tech: {
-
-            category:
-                "BRAND IDENTITY • DIGITAL SERVICES",
-
-            title:
-                "Influencer's Tech",
-
-            intro:
-                "A modern technology brand identity and digital presence designed to showcase creative services, technology solutions and digital projects.",
-
-            challenge:
-                "Create a professional technology brand that feels modern, trustworthy and capable of serving businesses and individuals.",
-
-            solution:
-                "Developed a clean visual direction and responsive digital experience focused on credibility, clear communication and showcasing creative work.",
-
-            type:
-                "Technology / Creative Services",
-
-            tags: [
-                "Branding",
-                "Graphic Design",
-                "Web Design"
-            ]
-
-        },
+    projectModalCategory.textContent =
+        project.categoryLabel;
 
 
-        urban: {
-
-            category:
-                "BRANDING • WEB DESIGN",
-
-            title:
-                "Urban Plate Restaurant Campaign",
-
-            intro:
-                "A modern restaurant branding and digital campaign combining visual identity, promotional graphics and responsive web design.",
-
-            challenge:
-                "Create a memorable restaurant identity that feels modern, welcoming and suitable for both digital and physical marketing.",
-
-            solution:
-                "Developed a cohesive visual direction and responsive website experience designed to present the restaurant and its offerings clearly.",
-
-            type:
-                "Restaurant / Hospitality",
-
-            tags: [
-                "Branding",
-                "Graphics",
-                "Web Design"
-            ]
-
-        },
+    projectModalTitle.textContent =
+        project.title;
 
 
-        website: {
-
-            category:
-                "WEB DEVELOPMENT • UI DESIGN",
-
-            title:
-                "Influencer's Tech Website",
-
-            intro:
-                "A responsive business website designed to present digital services, creative work and project information across mobile and desktop devices.",
-
-            challenge:
-                "Build a professional online presence that is fast, responsive and easy for potential clients to navigate.",
-
-            solution:
-                "Created a responsive front-end experience using semantic HTML, modern CSS and JavaScript interactions.",
-
-            type:
-                "Business Website",
-
-            tags: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Responsive Design"
-            ]
-
-        }
-
-    };
+    projectModalIntro.textContent =
+        project.description;
 
 
-    // =================================================
-    // OPEN PROJECT
-    // =================================================
-
-    function openProject(projectKey) {
-
-        const project =
-            projects[projectKey];
-
-        if (!project) {
-
-            console.error(
-                "Project does not exist:",
-                projectKey
-            );
-
-            return;
-
-        }
+    projectModalChallenge.textContent =
+        project.challenge;
 
 
-        // ---------------------------------------------
-        // CONTENT
-        // ---------------------------------------------
-
-        projectModalCategory.textContent =
-            project.category;
-
-        projectModalTitle.textContent =
-            project.title;
-
-        projectModalIntro.textContent =
-            project.intro;
-
-        projectModalChallenge.textContent =
-            project.challenge;
-
-        projectModalSolution.textContent =
-            project.solution;
-
-        projectModalType.textContent =
-            project.type;
+    projectModalSolution.textContent =
+        project.solution;
 
 
-        // ---------------------------------------------
-        // TAGS
-        // ---------------------------------------------
+    projectModalType.textContent =
+        project.type;
 
-        projectModalTags.innerHTML = "";
 
-        project.tags.forEach(tag => {
+    // TAGS
+
+    projectModalTags.innerHTML = "";
+
+
+    project.tags.forEach(
+        tag => {
 
             const tagElement =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
+
 
             tagElement.textContent =
                 tag;
+
 
             projectModalTags.appendChild(
                 tagElement
             );
 
-        });
-
-
-        // ---------------------------------------------
-        // SHOW
-        // ---------------------------------------------
-
-        projectModal.classList.add(
-            "active"
-        );
-
-        projectModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
-    // =================================================
-    // CLOSE PROJECT
-    // =================================================
-
-    function closeProject() {
-
-        projectModal.classList.remove(
-            "active"
-        );
-
-        projectModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-
-    // =================================================
-    // VIEW PROJECT BUTTONS
-    // =================================================
-
-    const projectButtons =
-        document.querySelectorAll(
-            ".portfolio-project-link"
-        );
-
-
-    console.log(
-        "Influencer's Tech:",
-        projectButtons.length,
-        "portfolio buttons detected."
-    );
-
-
-    projectButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                const projectKey =
-                    button.dataset.project;
-
-                console.log(
-                    "Opening:",
-                    projectKey
-                );
-
-                openProject(
-                    projectKey
-                );
-
-            }
-        );
-
-    });
-
-
-    // =================================================
-    // CLOSE BUTTON
-    // =================================================
-
-    if (projectModalClose) {
-
-        projectModalClose.addEventListener(
-            "click",
-            closeProject
-        );
-
-    }
-
-
-    // =================================================
-    // OVERLAY
-    // =================================================
-
-    if (projectModalOverlay) {
-
-        projectModalOverlay.addEventListener(
-            "click",
-            closeProject
-        );
-
-    }
-
-
-    // =================================================
-    // ESCAPE
-    // =================================================
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                projectModal.classList.contains(
-                    "active"
-                )
-            ) {
-
-                closeProject();
-
-            }
-
         }
     );
 
 
-});
+    // OPEN
+
+    projectModal.classList.add(
+        "active"
+    );
+
+
+    projectModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+// =====================================================
+// CLOSE CASE STUDY
+// =====================================================
+
+function closeProjectCaseStudy() {
+
+    projectModal.classList.remove(
+        "active"
+    );
+
+
+    projectModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+// CLOSE BUTTON
+
+if (projectModalClose) {
+
+    projectModalClose.addEventListener(
+        "click",
+        closeProjectCaseStudy
+    );
+
+}
+
+
+// OVERLAY
+
+if (projectModalOverlay) {
+
+    projectModalOverlay.addEventListener(
+        "click",
+        closeProjectCaseStudy
+    );
+
+}
+
+
+// ESCAPE
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            projectModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            closeProjectCaseStudy();
+
+        }
+
+    }
+);
