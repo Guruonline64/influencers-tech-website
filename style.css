@@ -718,6 +718,8 @@ footer {
 
 }
 
+
+
 /* =========================
    MOBILE MENU
 ========================= */
@@ -805,7 +807,317 @@ footer {
     }
 }
 
+/* =====================================================
+   PORTFOLIO FILTER SYSTEM
+===================================================== */
 
+.portfolio-filters {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 45px;
+
+}
+
+
+/* FILTER BUTTON */
+
+.portfolio-filter {
+
+    appearance: none;
+
+    border: 1px solid #303741;
+
+    background: transparent;
+
+    color: #929ba6;
+
+    padding:
+        10px 16px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+
+}
+
+
+.portfolio-filter:hover {
+
+    color: #ffffff;
+
+    border-color: #4da3ff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.portfolio-filter.active {
+
+    background: #ffffff;
+
+    border-color: #ffffff;
+
+    color: #101318;
+
+}
+
+
+/* =====================================================
+   GENERATED PROJECT CARD
+===================================================== */
+
+.portfolio-card-generated {
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        portfolioCardIn
+        .5s ease
+        forwards;
+
+}
+
+
+@keyframes portfolioCardIn {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   PROJECT IMAGE
+===================================================== */
+
+.portfolio-card-generated
+.portfolio-image {
+
+    overflow: hidden;
+
+}
+
+
+.portfolio-card-generated
+.portfolio-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform .6s cubic-bezier(.16,1,.3,1);
+
+}
+
+
+.portfolio-card-generated:hover
+.portfolio-image img {
+
+    transform:
+        scale(1.05);
+
+}
+
+
+/* =====================================================
+   PROJECT CATEGORY
+===================================================== */
+
+.portfolio-generated-category {
+
+    margin-top: 22px;
+
+    color: #4da3ff;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =====================================================
+   PROJECT TAGS
+===================================================== */
+
+.portfolio-generated-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 14px;
+
+}
+
+
+.portfolio-generated-tags span {
+
+    padding:
+        6px 9px;
+
+    border:
+        1px solid #303741;
+
+    border-radius: 4px;
+
+    color: #929ba6;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   PROJECT BUTTON
+===================================================== */
+
+.portfolio-generated-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.portfolio-generated-button span {
+
+    font-size: 17px;
+
+    transition:
+        transform .25s ease;
+
+}
+
+
+.portfolio-generated-button:hover {
+
+    color: #4da3ff;
+
+}
+
+
+.portfolio-generated-button:hover span {
+
+    transform:
+        translate(3px,-3px);
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.portfolio-empty {
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+    color: #68717d;
+
+}
+
+
+.portfolio-empty[hidden] {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .portfolio-filters {
+
+        gap: 7px;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .portfolio-filter {
+
+        padding:
+            9px 12px;
+
+        font-size: 10px;
+
+    }
+
+}
 
 
 /* =========================
@@ -959,6 +1271,18 @@ footer {
 
     transition: color 0.3s ease;
 }
+
+
+
+
+
+
+
+
+
+
+
+    
 
 .portfolio-project-link span {
     font-size: 17px;
