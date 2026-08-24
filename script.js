@@ -203,15 +203,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // FILTER PROJECTS
 
-        const filteredProjects =
-            filter === "all"
+      const filteredProjects =
+    filter === "all"
 
-                ? window.portfolioProjects
+        ? window.portfolioProjects
 
-                : window.portfolioProjects.filter(
-                    project =>
-                        project.category === filter
-                );
+        : window.portfolioProjects.filter(
+            project =>
+                Array.isArray(project.categories) &&
+                project.categories.includes(filter)
+        );
 
 
         // =================================================
