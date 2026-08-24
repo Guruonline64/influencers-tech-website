@@ -102,13 +102,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// =========================
-// PROJECT CASE STUDY MODAL
-// =========================
+// =====================================================
+// PORTFOLIO CASE STUDY SYSTEM — CLEAN VERSION
+// =====================================================
 
-const projectModal = document.getElementById("projectModal");
-const projectModalClose = document.getElementById("projectModalClose");
-const projectModalOverlay = document.getElementById("projectModalOverlay");
+const projectModal =
+    document.getElementById("projectModal");
+
+const projectModalClose =
+    document.getElementById("projectModalClose");
+
+const projectModalOverlay =
+    document.getElementById("projectModalOverlay");
+
+const projectModalImage =
+    document.getElementById("projectModalImage");
 
 const projectModalCategory =
     document.getElementById("projectModalCategory");
@@ -131,122 +139,294 @@ const projectModalTags =
 const projectModalType =
     document.getElementById("projectModalType");
 
+const projectModalLink =
+    document.getElementById("projectModalLink");
+
+
+// =====================================================
+// PROJECT DATA
+// =====================================================
 
 const projectData = {
 
-    urban: {
-        category: "BRANDING • WEB DESIGN",
-        title: "Urban Plate Restaurant Campaign",
-        intro: "A modern restaurant brand concept combining visual identity, promotional design and a responsive digital experience.",
-        challenge: "Create a memorable restaurant identity that feels modern, welcoming and suitable for both digital and physical marketing.",
-        solution: "Developed a cohesive visual direction and responsive website experience designed to present the restaurant and its offerings clearly.",
-        type: "Restaurant / Hospitality",
+    tech: {
+
+        category:
+            "BRAND IDENTITY • DIGITAL SERVICES",
+
+        title:
+            "Influencer's Tech",
+
+        intro:
+            "A modern technology brand identity and digital presence designed to showcase creative services, technology solutions and digital projects.",
+
+        challenge:
+            "Create a professional technology brand that feels modern, trustworthy and capable of serving businesses and individuals.",
+
+        solution:
+            "Developed a clean visual direction and responsive digital experience focused on credibility, clear communication and showcasing creative work.",
+
+        type:
+            "Technology / Creative Services",
+
+        image:
+            "Images/influencers-tech-flyer.png",
+
+        link:
+            "#",
+
         tags: [
             "Branding",
             "Graphic Design",
             "Web Design"
         ]
+
     },
 
-    tech: {
-        category: "BRAND IDENTITY",
-        title: "Influencer's Tech",
-        intro: "A technology brand identity and digital presence designed around modern web development, creative design and digital services.",
-        challenge: "Create a professional technology brand that can communicate its services clearly while maintaining a distinctive visual identity.",
-        solution: "Built a clean digital identity and responsive portfolio website focused on credibility, usability and showcasing creative work.",
-        type: "Technology / Creative Services",
+
+    urban: {
+
+        category:
+            "BRANDING • WEB DESIGN",
+
+        title:
+            "Urban Plate Restaurant",
+
+        intro:
+            "A modern restaurant branding and digital campaign combining visual identity, promotional graphics and responsive web design.",
+
+        challenge:
+            "Create a memorable restaurant identity that feels modern, welcoming and suitable for both digital and physical marketing.",
+
+        solution:
+            "Developed a cohesive visual direction and responsive website experience designed to present the restaurant and its offerings clearly.",
+
+        type:
+            "Restaurant / Hospitality",
+
+        image:
+            "Images/urban-plate-campaign.png",
+
+        link:
+            "#",
+
         tags: [
-            "Brand Identity",
-            "Logo Design",
-            "Web Design",
-            "Graphics"
+            "Branding",
+            "Graphics",
+            "Web Design"
         ]
+
     },
+
 
     website: {
-        category: "WEB DEVELOPMENT",
-        title: "Influencer's Tech Website",
-        intro: "A responsive business website designed to showcase services, projects and digital solutions across mobile and desktop devices.",
-        challenge: "Build a professional online presence that is fast, responsive and easy for potential clients to navigate.",
-        solution: "Created a responsive front-end experience using semantic HTML, modern CSS and JavaScript interactions.",
-        type: "Business Website",
+
+        category:
+            "WEB DEVELOPMENT • UI DESIGN",
+
+        title:
+            "Influencer's Tech Website",
+
+        intro:
+            "A responsive business website designed to present digital services, creative work and project information across mobile and desktop devices.",
+
+        challenge:
+            "Build a professional online presence that is fast, responsive and easy for potential clients to navigate.",
+
+        solution:
+            "Created a responsive front-end experience using semantic HTML, modern CSS and JavaScript interactions.",
+
+        type:
+            "Business Website",
+
+        image:
+            null,
+
+        link:
+            "https://guruonline64.github.io/influencers-tech-website/",
+
         tags: [
             "HTML",
             "CSS",
             "JavaScript",
             "Responsive Design"
         ]
+
     }
 
 };
 
 
+// =====================================================
+// OPEN MODAL
+// =====================================================
+
 function openProjectModal(projectKey) {
 
-    const project = projectData[projectKey];
+    const project =
+        projectData[projectKey];
 
     if (!project) {
         return;
     }
 
-    projectModalCategory.textContent = project.category;
 
-    projectModalTitle.textContent = project.title;
+    projectModalCategory.textContent =
+        project.category;
 
-    projectModalIntro.textContent = project.intro;
 
-    projectModalChallenge.textContent = project.challenge;
+    projectModalTitle.textContent =
+        project.title;
 
-    projectModalSolution.textContent = project.solution;
 
-    projectModalType.textContent = project.type;
+    projectModalIntro.textContent =
+        project.intro;
 
+
+    projectModalChallenge.textContent =
+        project.challenge;
+
+
+    projectModalSolution.textContent =
+        project.solution;
+
+
+    projectModalType.textContent =
+        project.type;
+
+
+    // ---------------------------------
+    // PROJECT IMAGE
+    // ---------------------------------
+
+    projectModalImage
+        .querySelector("img")
+        ?.remove();
+
+
+    if (project.image) {
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            project.image;
+
+        image.alt =
+            project.title;
+
+        projectModalImage
+            .appendChild(image);
+
+    }
+
+
+    // ---------------------------------
+    // TAGS
+    // ---------------------------------
 
     projectModalTags.innerHTML = "";
 
     project.tags.forEach(tag => {
 
-        const tagElement = document.createElement("span");
+        const tagElement =
+            document.createElement("span");
 
-        tagElement.textContent = tag;
+        tagElement.textContent =
+            tag;
 
-        projectModalTags.appendChild(tagElement);
+        projectModalTags
+            .appendChild(tagElement);
 
     });
 
+
+    // ---------------------------------
+    // PROJECT LINK
+    // ---------------------------------
+
+    if (project.link && project.link !== "#") {
+
+        projectModalLink.href =
+            project.link;
+
+        projectModalLink.style.display =
+            "inline-flex";
+
+    } else {
+
+        projectModalLink.style.display =
+            "none";
+
+    }
+
+
+    // ---------------------------------
+    // SHOW MODAL
+    // ---------------------------------
 
     projectModal.classList.add("active");
 
-    projectModal.setAttribute("aria-hidden", "false");
+    projectModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+        "hidden";
 
 }
 
+
+// =====================================================
+// CLOSE MODAL
+// =====================================================
 
 function closeProjectModal() {
 
-    projectModal.classList.remove("active");
+    projectModal.classList.remove(
+        "active"
+    );
 
-    projectModal.setAttribute("aria-hidden", "true");
+    projectModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 
 }
 
 
-document.querySelectorAll(".portfolio-project-link").forEach(button => {
+// =====================================================
+// PROJECT BUTTONS
+// =====================================================
 
-    button.addEventListener("click", () => {
+document
+    .querySelectorAll(".portfolio-project-link")
+    .forEach(button => {
 
-        const projectKey = button.dataset.project;
+        button.addEventListener(
+            "click",
+            () => {
 
-        openProjectModal(projectKey);
+                const projectKey =
+                    button.dataset.project;
+
+                openProjectModal(
+                    projectKey
+                );
+
+            }
+        );
 
     });
 
-});
 
+// =====================================================
+// CLOSE EVENTS
+// =====================================================
 
 projectModalClose.addEventListener(
     "click",
@@ -260,14 +440,21 @@ projectModalOverlay.addEventListener(
 );
 
 
-document.addEventListener("keydown", event => {
+document.addEventListener(
+    "keydown",
+    event => {
 
-    if (
-        event.key === "Escape" &&
-        projectModal.classList.contains("active")
-    ) {
-        closeProjectModal();
+        if (
+            event.key === "Escape" &&
+            projectModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            closeProjectModal();
+
+        }
+
     }
-
-});
+);
     
