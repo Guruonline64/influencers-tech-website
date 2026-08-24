@@ -179,14 +179,14 @@ function renderPortfolio(filter = "all") {
 
 
     const filteredProjects =
-        filter === "all"
+    filter === "all"
 
-            ? portfolioProjects
+        ? window.portfolioProjects
 
-            : portfolioProjects.filter(
-                project =>
-                    project.category === filter
-            );
+        : window.portfolioProjects.filter(
+            project =>
+                project.category === filter
+        );
 
 
     // EMPTY STATE
@@ -482,10 +482,10 @@ const projectModalType =
 function openProjectCaseStudy(projectId) {
 
     const project =
-        portfolioProjects.find(
-            item =>
-                item.id === projectId
-        );
+    window.portfolioProjects.find(
+        item =>
+            item.id === projectId
+    );
 
 
     if (!project) {
