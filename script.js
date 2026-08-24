@@ -163,12 +163,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const portfolioEmpty =
         document.getElementById("portfolioEmpty");
 
+    const portfolioSearch =
+    document.getElementById("portfolioSearch");
+
+const portfolioSearchClear =
+    document.getElementById("portfolioSearchClear");
+
 
     // =====================================================
     // RENDER PORTFOLIO
     // =====================================================
 
-    function renderPortfolio(filter = "all") {
+    function renderPortfolio(
+    filter = "all",
+    searchTerm = ""
+) {
 
         if (!portfolioGrid) {
             return;
@@ -203,17 +212,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // FILTER PROJECTS
 
-      const filteredProjects =
-    filter === "all"
+const normalizedSearch =
+    searchTerm.trim().toLowerCase();
 
-        ? window.portfolioProjects
+const filteredProjects =
+    window.portfolioProjects.filter(project => {
 
-        : window.portfolioProjects.filter(
-            project =>
+        // CATEGORY
+        const matchesCategory =
+            filter === "all" ||
+            (
                 Array.isArray(project.categories) &&
                 project.categories.includes(filter)
+            );
+
+        // SEARCH
+        if (!normalizedSearch) {
+            return matchesCategory;
+        }
+
+        const searchableText = [
+
+            project.title,
+            project.description,
+            project.challenge,
+            project.solution,
+            project.type,
+            project.year,
+
+            ...(project.categories || []),
+            ...(project.tags || []),
+            ...(project.tools || [])
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+        const matchesSearch =
+            searchableText.includes(
+                normalizedSearch
+            );
+
+        return (
+            matchesCategory &&
+            matchesSearch
         );
 
+    });
 
         // =================================================
         // EMPTY STATE
@@ -409,6 +454,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // FILTER BUTTONS
     // =====================================================
 
+
+    let activePortfolioFilter = "all";
+    
     portfolioFilters.forEach(
         filterButton => {
 
@@ -416,15 +464,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 "click",
                 () => {
 
-                    portfolioFilters.forEach(
-                        button => {
+                   const filter =
+    filterButton.dataset.filter;
 
-                            button.classList.remove(
-                                "active"
-                            );
 
-                        }
-                    );
+activePortfolioFilter =
+    filter;
+
+
+renderPortfolio(
+    activePortfolioFilter,
+    portfolioSearch
+        ? portfolioSearch.value
+        : ""
+);
 
 
                     filterButton.classList.add(
@@ -445,7 +498,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     );
+// =====================================================
+// PORTFOLIO SEARCH
+// =====================================================
 
+if (portfolioSearch) {
+
+    portfolioSearch.addEventListener(
+        "input",
+        () => {
+
+            const searchValue =
+                portfolioSearch.value;
+
+
+            if (portfolioSearchClear) {
+
+                portfolioSearchClear.hidden =
+                    searchValue.length === 0;
+
+            }
+
+
+            renderPortfolio(
+                activePortfolioFilter,
+                searchValue
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// CLEAR SEARCH
+// =====================================================
+
+if (portfolioSearchClear) {
+
+    portfolioSearchClear.addEventListener(
+        "click",
+        () => {
+
+            if (portfolioSearch) {
+
+                portfolioSearch.value = "";
+
+            }
+
+
+            portfolioSearchClear.hidden =
+                true;
+
+
+            renderPortfolio(
+                activePortfolioFilter,
+                ""
+            );
+
+
+            if (portfolioSearch) {
+
+                portfolioSearch.focus();
+
+            }
+
+        }
+    );
+
+}
 
     // =====================================================
     // CASE STUDY MODAL ELEMENTS
