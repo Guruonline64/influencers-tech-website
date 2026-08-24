@@ -1,164 +1,236 @@
-// ==============================
-// UrbanEdge Digital
-// Basic Website Interactions
-// ==============================
+// =====================================================
+// INFLUENCER'S TECH
+// MAIN JAVASCRIPT
+// =====================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Current year in footer
-    const yearElement = document.querySelector("footer p:last-child");
+    // =================================================
+    // CURRENT YEAR
+    // =================================================
+
+    const yearElement =
+        document.querySelector("footer p:last-child");
 
     if (yearElement) {
-        const currentYear = new Date().getFullYear();
 
         yearElement.textContent =
-            `© ${currentYear} Influencer's Tech | Digital Solutions all right reserved.`;
+            `© ${new Date().getFullYear()} Influencer's Tech | Digital Solutions.`;
+
     }
 
 
-    // Add a subtle shadow to the header when scrolling
-    const header = document.querySelector(".header");
+    // =================================================
+    // HEADER SHADOW
+    // =================================================
 
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 20) {
-            header.style.boxShadow = "0 8px 30px rgba(0, 0, 0, 0.25)";
-        } else {
-            header.style.boxShadow = "none";
-        }
-    });
+    const header =
+        document.querySelector(".header");
+
+    if (header) {
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 20) {
+
+                header.style.boxShadow =
+                    "0 8px 30px rgba(0, 0, 0, 0.25)";
+
+            } else {
+
+                header.style.boxShadow =
+                    "none";
+
+            }
+
+        });
+
+    }
 
 
-    // Smooth navigation
-    const navigationLinks = document.querySelectorAll('a[href^="#"]');
+    // =================================================
+    // SMOOTH NAVIGATION
+    // =================================================
+
+    const navigationLinks =
+        document.querySelectorAll('a[href^="#"]');
 
     navigationLinks.forEach(link => {
+
         link.addEventListener("click", event => {
 
-            const targetId = link.getAttribute("href");
+            const targetId =
+                link.getAttribute("href");
 
-            if (targetId === "#") return;
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+                return;
+            }
 
-            const target = document.querySelector(targetId);
+            const target =
+                document.querySelector(targetId);
 
             if (target) {
+
                 event.preventDefault();
 
                 target.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
                 });
+
             }
+
         });
+
     });
 
 
-    // Simple project interaction
-    const workItems = document.querySelectorAll(".work-item");
+    // =================================================
+    // MOBILE MENU
+    // =================================================
 
-    workItems.forEach(item => {
-        item.addEventListener("click", () => {
+    const menuToggle =
+        document.querySelector(".menu-toggle");
 
-            const projectName =
-                item.querySelector("h3")?.textContent || "Project";
-
-            console.log(`Selected project: ${projectName}`);
-        });
-    });
-        // Mobile hamburger menu
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mobileNav = document.querySelector(".mobile-nav");
+    const mobileNav =
+        document.querySelector(".mobile-nav");
 
     if (menuToggle && mobileNav) {
 
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener(
+            "click",
+            () => {
 
-            const isOpen = mobileNav.classList.toggle("active");
+                const isOpen =
+                    mobileNav.classList.toggle("active");
 
-            menuToggle.classList.toggle("active", isOpen);
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-        });
-
-
-        // Close menu after clicking a navigation link
-        mobileNav.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                mobileNav.classList.remove("active");
-                menuToggle.classList.remove("active");
+                menuToggle.classList.toggle(
+                    "active",
+                    isOpen
+                );
 
                 menuToggle.setAttribute(
                     "aria-expanded",
-                    "false"
+                    isOpen ? "true" : "false"
                 );
+
+            }
+        );
+
+
+        mobileNav
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        mobileNav.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
             });
 
-        });
     }
-});
 
 
-// =====================================================
-// PORTFOLIO CASE STUDY SYSTEM
-// =====================================================
+    // =================================================
+    // PORTFOLIO CASE STUDY SYSTEM
+    // =================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+    const projectModal =
+        document.getElementById("projectModal");
 
-    const projectModal = document.getElementById("projectModal");
-    const projectModalClose = document.getElementById("projectModalClose");
-    const projectModalOverlay = document.getElementById("projectModalOverlay");
+    const projectModalClose =
+        document.getElementById(
+            "projectModalClose"
+        );
 
-    const projectModalImage = document.getElementById("projectModalImage");
+    const projectModalOverlay =
+        document.getElementById(
+            "projectModalOverlay"
+        );
 
     const projectModalCategory =
-        document.getElementById("projectModalCategory");
+        document.getElementById(
+            "projectModalCategory"
+        );
 
     const projectModalTitle =
-        document.getElementById("projectModalTitle");
+        document.getElementById(
+            "projectModalTitle"
+        );
 
     const projectModalIntro =
-        document.getElementById("projectModalIntro");
+        document.getElementById(
+            "projectModalIntro"
+        );
 
     const projectModalChallenge =
-        document.getElementById("projectModalChallenge");
+        document.getElementById(
+            "projectModalChallenge"
+        );
 
     const projectModalSolution =
-        document.getElementById("projectModalSolution");
+        document.getElementById(
+            "projectModalSolution"
+        );
 
     const projectModalTags =
-        document.getElementById("projectModalTags");
+        document.getElementById(
+            "projectModalTags"
+        );
 
     const projectModalType =
-        document.getElementById("projectModalType");
+        document.getElementById(
+            "projectModalType"
+        );
 
-    const projectModalLink =
-        document.getElementById("projectModalLink");
 
-
-    // -----------------------------------------
-    // SAFETY CHECK
-    // -----------------------------------------
+    // =================================================
+    // CHECK MODAL
+    // =================================================
 
     if (!projectModal) {
-        console.error("Project modal not found.");
+
+        console.error(
+            "ERROR: #projectModal was not found."
+        );
+
         return;
+
     }
 
 
-    // -----------------------------------------
+    // =================================================
     // PROJECT DATA
-    // -----------------------------------------
+    // =================================================
 
-    const projectData = {
+    const projects = {
 
         tech: {
-            category: "BRAND IDENTITY • DIGITAL SERVICES",
 
-            title: "Influencer's Tech",
+            category:
+                "BRAND IDENTITY • DIGITAL SERVICES",
+
+            title:
+                "Influencer's Tech",
 
             intro:
                 "A modern technology brand identity and digital presence designed to showcase creative services, technology solutions and digital projects.",
@@ -172,24 +244,22 @@ document.addEventListener("DOMContentLoaded", () => {
             type:
                 "Technology / Creative Services",
 
-            image:
-                "Images/influencers-tech-flyer.png",
-
-            link:
-                "#",
-
             tags: [
                 "Branding",
                 "Graphic Design",
                 "Web Design"
             ]
+
         },
 
 
         urban: {
-            category: "BRANDING • WEB DESIGN",
 
-            title: "Urban Plate Restaurant",
+            category:
+                "BRANDING • WEB DESIGN",
+
+            title:
+                "Urban Plate Restaurant Campaign",
 
             intro:
                 "A modern restaurant branding and digital campaign combining visual identity, promotional graphics and responsive web design.",
@@ -203,24 +273,22 @@ document.addEventListener("DOMContentLoaded", () => {
             type:
                 "Restaurant / Hospitality",
 
-            image:
-                "Images/urban-plate-campaign.png",
-
-            link:
-                "#",
-
             tags: [
                 "Branding",
                 "Graphics",
                 "Web Design"
             ]
+
         },
 
 
         website: {
-            category: "WEB DEVELOPMENT • UI DESIGN",
 
-            title: "Influencer's Tech Website",
+            category:
+                "WEB DEVELOPMENT • UI DESIGN",
+
+            title:
+                "Influencer's Tech Website",
 
             intro:
                 "A responsive business website designed to present digital services, creative work and project information across mobile and desktop devices.",
@@ -234,191 +302,90 @@ document.addEventListener("DOMContentLoaded", () => {
             type:
                 "Business Website",
 
-            image:
-                null,
-
-            link:
-                "https://guruonline64.github.io/influencers-tech-website/",
-
             tags: [
                 "HTML",
                 "CSS",
                 "JavaScript",
                 "Responsive Design"
             ]
+
         }
 
     };
 
 
-    // -----------------------------------------
+    // =================================================
     // OPEN PROJECT
-    // -----------------------------------------
+    // =================================================
 
     function openProject(projectKey) {
 
-        const project = projectData[projectKey];
+        const project =
+            projects[projectKey];
 
         if (!project) {
-            console.error("Project not found:", projectKey);
+
+            console.error(
+                "Project does not exist:",
+                projectKey
+            );
+
             return;
-        }
-
-
-        // Text
-
-        if (projectModalCategory) {
-            projectModalCategory.textContent = project.category;
-        }
-
-        if (projectModalTitle) {
-            projectModalTitle.textContent = project.title;
-        }
-
-        if (projectModalIntro) {
-            projectModalIntro.textContent = project.intro;
-        }
-
-        if (projectModalChallenge) {
-            projectModalChallenge.textContent = project.challenge;
-        }
-
-        if (projectModalSolution) {
-            projectModalSolution.textContent = project.solution;
-        }
-
-        if (projectModalType) {
-            projectModalType.textContent = project.type;
-        }
-
-
-        // -----------------------------------------
-        // IMAGE
-        // -----------------------------------------
-
-        if (projectModalImage) {
-
-            const oldImage =
-                projectModalImage.querySelector("img");
-
-            if (oldImage) {
-                oldImage.remove();
-            }
-
-
-            const placeholder =
-                projectModalImage.querySelector(
-                    ".project-modal-image-placeholder"
-                );
-
-
-            if (project.image) {
-
-                const image =
-                    document.createElement("img");
-
-                image.src = project.image;
-
-                image.alt = project.title;
-
-                image.onerror = function () {
-
-                    console.warn(
-                        "Project image could not be loaded:",
-                        project.image
-                    );
-
-                    if (placeholder) {
-                        placeholder.style.display = "grid";
-                        placeholder.textContent =
-                            project.title;
-                    }
-
-                    image.remove();
-                };
-
-
-                if (placeholder) {
-                    placeholder.style.display = "none";
-                }
-
-                projectModalImage.appendChild(image);
-
-            } else {
-
-                if (placeholder) {
-
-                    placeholder.style.display = "grid";
-
-                    placeholder.textContent =
-                        "WEB DESIGN";
-                }
-
-            }
 
         }
 
 
-        // -----------------------------------------
+        // ---------------------------------------------
+        // CONTENT
+        // ---------------------------------------------
+
+        projectModalCategory.textContent =
+            project.category;
+
+        projectModalTitle.textContent =
+            project.title;
+
+        projectModalIntro.textContent =
+            project.intro;
+
+        projectModalChallenge.textContent =
+            project.challenge;
+
+        projectModalSolution.textContent =
+            project.solution;
+
+        projectModalType.textContent =
+            project.type;
+
+
+        // ---------------------------------------------
         // TAGS
-        // -----------------------------------------
+        // ---------------------------------------------
 
-        if (projectModalTags) {
+        projectModalTags.innerHTML = "";
 
-            projectModalTags.innerHTML = "";
+        project.tags.forEach(tag => {
 
-            project.tags.forEach(tag => {
+            const tagElement =
+                document.createElement("span");
 
-                const tagElement =
-                    document.createElement("span");
+            tagElement.textContent =
+                tag;
 
-                tagElement.textContent = tag;
+            projectModalTags.appendChild(
+                tagElement
+            );
 
-                projectModalTags.appendChild(
-                    tagElement
-                );
-
-            });
-
-        }
+        });
 
 
-        // -----------------------------------------
-        // LIVE PROJECT LINK
-        // -----------------------------------------
+        // ---------------------------------------------
+        // SHOW
+        // ---------------------------------------------
 
-        if (projectModalLink) {
-
-            if (
-                project.link &&
-                project.link !== "#"
-            ) {
-
-                projectModalLink.href =
-                    project.link;
-
-                projectModalLink.style.display =
-                    "inline-flex";
-
-            } else {
-
-                projectModalLink.removeAttribute(
-                    "href"
-                );
-
-                projectModalLink.style.display =
-                    "none";
-
-            }
-
-        }
-
-
-        // -----------------------------------------
-        // SHOW MODAL
-        // -----------------------------------------
-
-        projectModal.classList.add("active");
+        projectModal.classList.add(
+            "active"
+        );
 
         projectModal.setAttribute(
             "aria-hidden",
@@ -431,9 +398,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // -----------------------------------------
+    // =================================================
     // CLOSE PROJECT
-    // -----------------------------------------
+    // =================================================
 
     function closeProject() {
 
@@ -452,9 +419,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // -----------------------------------------
+    // =================================================
     // VIEW PROJECT BUTTONS
-    // -----------------------------------------
+    // =================================================
 
     const projectButtons =
         document.querySelectorAll(
@@ -463,8 +430,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     console.log(
-        "Portfolio buttons found:",
-        projectButtons.length
+        "Influencer's Tech:",
+        projectButtons.length,
+        "portfolio buttons detected."
     );
 
 
@@ -472,21 +440,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         button.addEventListener(
             "click",
-            function (event) {
+            event => {
 
                 event.preventDefault();
 
+                event.stopPropagation();
+
                 const projectKey =
-                    this.getAttribute(
-                        "data-project"
-                    );
+                    button.dataset.project;
 
                 console.log(
-                    "Opening project:",
+                    "Opening:",
                     projectKey
                 );
 
-                openProject(projectKey);
+                openProject(
+                    projectKey
+                );
 
             }
         );
@@ -494,9 +464,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // -----------------------------------------
+    // =================================================
     // CLOSE BUTTON
-    // -----------------------------------------
+    // =================================================
 
     if (projectModalClose) {
 
@@ -508,9 +478,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // -----------------------------------------
-    // CLICK OUTSIDE
-    // -----------------------------------------
+    // =================================================
+    // OVERLAY
+    // =================================================
 
     if (projectModalOverlay) {
 
@@ -522,9 +492,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // -----------------------------------------
-    // ESCAPE KEY
-    // -----------------------------------------
+    // =================================================
+    // ESCAPE
+    // =================================================
 
     document.addEventListener(
         "keydown",
@@ -544,41 +514,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
+
 });
-    });
-
-
-// =====================================================
-// CLOSE EVENTS
-// =====================================================
-
-projectModalClose.addEventListener(
-    "click",
-    closeProjectModal
-);
-
-
-projectModalOverlay.addEventListener(
-    "click",
-    closeProjectModal
-);
-
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape" &&
-            projectModal.classList.contains(
-                "active"
-            )
-        ) {
-
-            closeProjectModal();
-
-        }
-
-    }
-);
-    
