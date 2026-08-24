@@ -66,7 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 !targetId ||
                 targetId === "#"
             ) {
+
                 return;
+
             }
 
             const target =
@@ -158,36 +160,33 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("portfolioGrid");
 
     const portfolioFilters =
-        document.querySelectorAll(".portfolio-filter");
+        document.querySelectorAll(
+            ".portfolio-filter"
+        );
 
     const portfolioEmpty =
         document.getElementById("portfolioEmpty");
-
-    const portfolioSearch =
-    document.getElementById("portfolioSearch");
-
-const portfolioSearchClear =
-    document.getElementById("portfolioSearchClear");
 
 
     // =====================================================
     // RENDER PORTFOLIO
     // =====================================================
 
-    function renderPortfolio(
-    filter = "all",
-    searchTerm = ""
-) {
+    function renderPortfolio(filter = "all") {
 
         if (!portfolioGrid) {
+
             return;
+
         }
 
+
+        // Clear existing projects
 
         portfolioGrid.innerHTML = "";
 
 
-        // Make sure the project database exists
+        // Make sure database exists
 
         if (
             !window.portfolioProjects ||
@@ -210,55 +209,43 @@ const portfolioSearchClear =
         }
 
 
+        // =================================================
         // FILTER PROJECTS
+        // =================================================
 
-const normalizedSearch =
-    searchTerm.trim().toLowerCase();
+        const filteredProjects =
+            window.portfolioProjects.filter(
+                project => {
 
-const filteredProjects =
-    window.portfolioProjects.filter(project => {
+                    if (filter === "all") {
 
-        // CATEGORY
-        const matchesCategory =
-            filter === "all" ||
-            (
-                Array.isArray(project.categories) &&
-                project.categories.includes(filter)
+                        return true;
+
+                    }
+
+
+                    // New multi-category system
+
+                    if (
+                        Array.isArray(
+                            project.categories
+                        )
+                    ) {
+
+                        return project.categories.includes(
+                            filter
+                        );
+
+                    }
+
+
+                    // Backwards compatibility
+
+                    return project.category === filter;
+
+                }
             );
 
-        // SEARCH
-        if (!normalizedSearch) {
-            return matchesCategory;
-        }
-
-        const searchableText = [
-
-            project.title,
-            project.description,
-            project.challenge,
-            project.solution,
-            project.type,
-            project.year,
-
-            ...(project.categories || []),
-            ...(project.tags || []),
-            ...(project.tools || [])
-
-        ]
-        .join(" ")
-        .toLowerCase();
-
-        const matchesSearch =
-            searchableText.includes(
-                normalizedSearch
-            );
-
-        return (
-            matchesCategory &&
-            matchesSearch
-        );
-
-    });
 
         // =================================================
         // EMPTY STATE
@@ -294,7 +281,9 @@ const filteredProjects =
             (project, index) => {
 
                 const article =
-                    document.createElement("article");
+                    document.createElement(
+                        "article"
+                    );
 
 
                 article.className =
@@ -315,6 +304,7 @@ const filteredProjects =
                 if (project.image) {
 
                     imageHTML = `
+
                         <div class="portfolio-image">
 
                             <img
@@ -324,18 +314,24 @@ const filteredProjects =
                             >
 
                         </div>
+
                     `;
 
                 } else {
 
                     imageHTML = `
-                        <div class="portfolio-image portfolio-placeholder">
+
+                        <div class="
+                            portfolio-image
+                            portfolio-placeholder
+                        ">
 
                             <span>
-                                ${project.type}
+                                ${project.type || "Project"}
                             </span>
 
                         </div>
+
                     `;
 
                 }
@@ -359,14 +355,17 @@ const filteredProjects =
 
 
                 // -----------------------------------------
-                // PROJECT CARD
+                // CARD
                 // -----------------------------------------
 
                 article.innerHTML = `
 
                     ${imageHTML}
 
-                    <div class="portfolio-generated-category">
+
+                    <div class="
+                        portfolio-generated-category
+                    ">
 
                         ${project.categoryLabel || ""}
 
@@ -374,7 +373,7 @@ const filteredProjects =
 
 
                     <h3>
-                        ${project.title}
+                        ${project.title || ""}
                     </h3>
 
 
@@ -383,9 +382,9 @@ const filteredProjects =
                     </p>
 
 
-                    <div
-                        class="portfolio-generated-tags"
-                    >
+                    <div class="
+                        portfolio-generated-tags
+                    ">
 
                         ${tagsHTML}
 
@@ -451,124 +450,46 @@ const filteredProjects =
 
 
     // =====================================================
-// FILTER BUTTONS
-// =====================================================
+    // FILTER BUTTONS
+    // =====================================================
 
-let activePortfolioFilter = "all";
+    portfolioFilters.forEach(
+        filterButton => {
 
-portfolioFilters.forEach(
-    filterButton => {
+            filterButton.addEventListener(
+                "click",
+                () => {
 
-        filterButton.addEventListener(
-            "click",
-            () => {
+                    portfolioFilters.forEach(
+                        button => {
 
-                portfolioFilters.forEach(
-                    button => {
+                            button.classList.remove(
+                                "active"
+                            );
 
-                        button.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
+                        }
+                    );
 
 
-                filterButton.classList.add(
-                    "active"
-                );
+                    filterButton.classList.add(
+                        "active"
+                    );
 
 
-                const filter =
-                    filterButton.dataset.filter;
+                    const filter =
+                        filterButton.dataset.filter;
 
 
-                activePortfolioFilter =
-                    filter;
+                    renderPortfolio(
+                        filter
+                    );
 
-
-                renderPortfolio(
-                    activePortfolioFilter,
-                    portfolioSearch
-                        ? portfolioSearch.value
-                        : ""
-                );
-
-            }
-        );
-
-    }
-);
-// =====================================================
-// PORTFOLIO SEARCH
-// =====================================================
-
-if (portfolioSearch) {
-
-    portfolioSearch.addEventListener(
-        "input",
-        () => {
-
-            const searchValue =
-                portfolioSearch.value;
-
-
-            if (portfolioSearchClear) {
-
-                portfolioSearchClear.hidden =
-                    searchValue.length === 0;
-
-            }
-
-
-            renderPortfolio(
-                activePortfolioFilter,
-                searchValue
+                }
             );
 
         }
     );
 
-}
-
-
-// =====================================================
-// CLEAR SEARCH
-// =====================================================
-
-if (portfolioSearchClear) {
-
-    portfolioSearchClear.addEventListener(
-        "click",
-        () => {
-
-            if (portfolioSearch) {
-
-                portfolioSearch.value = "";
-
-            }
-
-
-            portfolioSearchClear.hidden =
-                true;
-
-
-            renderPortfolio(
-                activePortfolioFilter,
-                ""
-            );
-
-
-            if (portfolioSearch) {
-
-                portfolioSearch.focus();
-
-            }
-
-        }
-    );
-
-}
 
     // =====================================================
     // CASE STUDY MODAL ELEMENTS
@@ -789,7 +710,9 @@ if (portfolioSearchClear) {
     function closeProjectCaseStudy() {
 
         if (!projectModal) {
+
             return;
+
         }
 
 
