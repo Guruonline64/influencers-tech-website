@@ -165,115 +165,105 @@
 </section>
 
 
+<!-- =====================================================
+     PORTFOLIO
+===================================================== -->
+
 <section class="work" id="work">
+
     <div class="container">
 
         <div class="section-heading">
-            <p class="eyebrow">SELECTED WORK</p>
-            <h2>Selected design concepts & projects.</h2>
+
+            <p class="eyebrow">
+                SELECTED WORK
+            </p>
+
+            <h2>
+                Selected design concepts & projects.
+            </h2>
+
         </div>
 
-        <div class="work-grid">
-           
-            
-     <article class="work-item portfolio-card-upgraded">
 
-    <div class="portfolio-image">
-        <!-- KEEP YOUR EXISTING SRC EXACTLY AS IT IS -->
-        <img src="Images/influencers-tech-flyer.png" alt="Influencer's Tech Promotional Flyer">
-    </div>
+        <!-- =========================
+             PORTFOLIO FILTERS
+        ========================== -->
 
-    <div class="portfolio-category">
-        BRANDING • WEB DESIGN
-    </div>
+        <div
+            class="portfolio-filters"
+            id="portfolioFilters"
+            role="tablist"
+            aria-label="Portfolio categories"
+        >
 
-    <h3>Influencer's Tech</h3>
+            <button
+                class="portfolio-filter active"
+                data-filter="all"
+                type="button"
+            >
+                All
+            </button>
 
-    <p>
-        A modern restaurant branding and digital campaign combining
-        visual identity, promotional graphics and responsive web design.
-    </p>
+            <button
+                class="portfolio-filter"
+                data-filter="branding"
+                type="button"
+            >
+                Branding
+            </button>
 
-    <div class="portfolio-tags">
-        <span>Branding</span>
-        <span>Graphics</span>
-        <span>Web Design</span>
-    </div>
+            <button
+                class="portfolio-filter"
+                data-filter="websites"
+                type="button"
+            >
+                Websites
+            </button>
 
-    <button class="portfolio-project-link" data-project="tech">
-    View Project <span>↗</span>
-   </button>
+            <button
+                class="portfolio-filter"
+                data-filter="graphics"
+                type="button"
+            >
+                Graphics
+            </button>
 
-</article>
-    
-         <article class="work-item portfolio-card-upgraded">
-    <div class="portfolio-image">
-        <!-- KEEP YOUR EXISTING SRC EXACTLY AS IT IS -->
-        <img src="Images/urban-plate-campaign.png" alt="Urban Plate Restaurant Campaign">
-    </div>
+            <button
+                class="portfolio-filter"
+                data-filter="uiux"
+                type="button"
+            >
+                UI/UX
+            </button>
 
-    <div class="portfolio-category">
-        BRANDING • WEB DESIGN
-    </div>
+        </div>
 
-    <h3>Urban Plate Restaurant Campaign</h3>
 
-    <p>
-        A modern restaurant branding and digital campaign combining
-        visual identity, promotional graphics and responsive web design.
-    </p>
+        <!-- =========================
+             PROJECT GRID
+        ========================== -->
 
-    <div class="portfolio-tags">
-        <span>Branding</span>
-        <span>Graphics</span>
-        <span>Web Design</span>
-    </div>
+        <div
+            class="work-grid"
+            id="portfolioGrid"
+        ></div>
 
-    <button class="portfolio-project-link" data-project="urban">
-    View Project <span>↗</span>
-    </button>
 
-</article>
+        <!-- EMPTY STATE -->
 
-        
-            <article class="work-item portfolio-card-upgraded">
-
-                <div class="portfolio-image portfolio-placeholder">
-
-                    <span>
-                        WEB DESIGN
-                    </span>
-
-                </div>
-
-                <div class="portfolio-category">
-                    WEB DEVELOPMENT • UI DESIGN
-                </div>
-
-                <h3>Influencer's Tech Website</h3>
-
-                <p>
-                    A responsive business website designed to present
-                    digital services, creative work and project
-                    information across devices.
-                </p>
-
-                <div class="portfolio-tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-
-                <button
-                    class="portfolio-project-link"
-                    data-project="website"
-                >
-                    View Project <span>↗</span>
-                </button>
-
-            </article>
+        <div
+            class="portfolio-empty"
+            id="portfolioEmpty"
+            hidden
+        >
+            <p>
+                No projects found in this category yet.
+            </p>
+        </div>
 
     </div>
+
 </section>
 
 
@@ -428,7 +418,7 @@
     </div>
 </footer>
 
-
+<script src="projects.js"></script>
 <script src="script.js"></script>
 
 </body>
