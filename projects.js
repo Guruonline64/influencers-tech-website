@@ -116,7 +116,37 @@ const portfolioProjects = [
             "Business Website"
 
     },
+{
+    id: "nike-branding",
 
+    title: "Nike Brand Concept",
+
+    category: "branding",
+
+    categoryLabel:
+        "Brand Identity • Graphic Design",
+
+    tags: [
+        "Logo Design",
+        "Branding",
+        "Graphics"
+    ],
+
+    image:
+        "Images/nike-branding.png",
+
+    description:
+        "A modern brand identity concept...",
+
+    challenge:
+        "Create a bold visual identity...",
+
+    solution:
+        "Developed a clean and recognizable identity...",
+
+    type:
+        "Brand Identity"
+}
 
     // =================================================
     // ADD MORE PROJECTS BELOW
