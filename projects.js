@@ -3,7 +3,7 @@
 // PORTFOLIO PROJECT DATABASE
 // =====================================================
 
-const portfolioProjects = [
+window.portfolioProjects = [
 
     // =================================================
     // PROJECT 01
